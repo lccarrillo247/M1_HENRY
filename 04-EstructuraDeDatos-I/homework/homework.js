@@ -14,9 +14,50 @@ Secuencia:  0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
 Como ejercicio adicional y completamente opcional, al terminar de resolver este problema pueden intentar definir funciones que logren los mismos resultados pero de manera iterativa.
 */
 
-function nFactorial(n) {}
+function nFactorial(n) {
+  if (n === 0 || n === 1) {
+    return 1
+  } else {
+    return n * nFactorial(n - 1)
+  };
+//   if (typeof n === 'number') {
+//   let nuevoNumero = n -1;
+//   let resultado = n * nuevoNumero;
+//   let array = [];
+//   array.push(resultado, nuevoNumero)
+//   nFactorial(array)
+//   } else {
+//       if (n.slice(1,2) - 1 === 0) {
+//       return n.slice(0,1)
+//     } else {
+//     let nuevoNumero = n.slice(1,2) -1
+//     let resultado = n.slice(0,1) * nuevoNumero
+//     let newArray = [];
+//     newArray.push(resultado, nuevoNumero)
+//     nFactorial(newArray)
+//         } return array
+// }
+// let nuevoNumero = n - 1;
+// let resultado = n * nuevoNumero;
+// if (nuevoNumero > 0) {
+//   nFactorial(nuevoNumero)
+// } else {
+//   return resultado
+// };
+};
 
-function nFibonacci(n) {}
+function nFibonacci(n) {
+  let resultado = 0;
+  switch (n) {
+    case 0:
+    return 0
+    case 1:
+      return 1
+    break;
+    default:
+      return resultado = nFibonacci(n-1) + nFibonacci(n-2);
+  }
+}
 
 /*
 Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que ingresa es el primero que se quita. Definir los siguientes métodos:
@@ -27,7 +68,21 @@ Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde e
 Pueden utilizar class o función constructora.
 */
 
-function Queue() {}
+function Queue() {
+  this.fila = []
+}
+
+Queue.prototype.enqueue = function(parametro) {
+this.fila.push(parametro)
+}
+
+Queue.prototype.dequeue = function() {
+  return this.fila.shift()
+}
+
+Queue.prototype.size = function() {
+  return this.fila.length
+}
 
 /*⚠️ No modificar nada debajo de esta línea ⚠️*/
 module.exports = {

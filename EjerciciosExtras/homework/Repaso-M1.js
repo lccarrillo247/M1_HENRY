@@ -16,6 +16,18 @@ const {
 
 var countArray = function(array) {
     // Tu código aca:
+
+    let total = 0;
+
+    for (item of array) {
+        
+        if (Array.isArray(item)) {
+            total += countArray(item)
+        } else {
+            total += item
+        }
+    }
+    return total
     
 }
 
@@ -40,6 +52,16 @@ var countArray = function(array) {
 var countProps = function(obj) {
     // Tu código aca:
 
+    let cuenta = Object.keys(obj).length
+
+    for (let prop in obj) {
+        
+        if (typeof obj[prop] === 'object' && !Array.isArray(obj[prop])) {
+            cuenta += countProps(obj[prop]);
+        }
+    }
+
+    return cuenta
 }
 
 
@@ -54,6 +76,19 @@ var countProps = function(obj) {
 LinkedList.prototype.changeNotNumbers = function(){
     // Tu código aca:
 
+    let current = this.head;
+    let cuenta = 0;
+    
+    while (current) {
+        if (isNaN(Number(current.value))) {
+    current.value = 'Kiricocho'
+    cuenta++
+        }
+    current = current.next
+    }
+    
+     return cuenta;
+
 }
 
 
@@ -67,6 +102,23 @@ LinkedList.prototype.changeNotNumbers = function(){
 
 var mergeQueues = function(queueOne, queueTwo) {
     // Tu código aca:
+
+    let queueThree = new Queue();
+
+    while (queueOne.size() > 0 && queueTwo.size() > 0) {
+        queueThree.enqueue(queueOne.dequeue());
+        queueThree.enqueue(queueTwo.dequeue());
+    }
+
+    while (queueOne.size() > 0) {
+        queueThree.enqueue(queueOne.dequeue());
+    }
+
+    while (queueTwo.size() > 0) {
+        queueThree.enqueue(queueTwo.dequeue());
+    }
+
+    return queueThree;
 
 }
 
@@ -83,12 +135,26 @@ var mergeQueues = function(queueOne, queueTwo) {
 var closureMult = function(multiplier) {
     // Tu código aca:
 
+    return function(valor){
+        return multiplier * valor;
+    }
+
 }
 
 // Implementar el método sum dentro del prototype de BinarySearchTree
 // que debe retornar la suma total de los valores dentro de cada nodo del arbol
 BinarySearchTree.prototype.sum = function() {
     // Tu código aca:
+
+    let suma = 0;
+
+    if(this.value) suma += this.value;
+
+    if(this.left) suma += this.left.sum();
+
+    if(this.right) suma += this.right.sum();
+
+    return suma
 
 }
 
